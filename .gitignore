@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Environment variables
+.env
+.env.*
+.env.local
+.env.*.local
+*.env
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Docker
+docker-compose.override.yml
+
+# Secrets
+secrets/
+*.pem
+*.key
+*.crt
+!public.crt
+
+# Misc
+.cache/
+temp/
+tmp/
+.envrc
+
+# Claude Code context files
+.claude/
+CLAUDE.local.md
+SESSION_LOG.md
