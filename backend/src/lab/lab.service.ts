@@ -66,7 +66,9 @@ export class LabService {
     return { filePath: written };
   }
 
-  async captureCpuProfile(seconds: number): Promise<{ filePath: string; durationSeconds: number }> {
+  async captureCpuProfile(
+    seconds: number,
+  ): Promise<{ filePath: string; durationSeconds: number }> {
     if (this.cpu.inProgress) {
       throw new ConflictException('CPU profile already in progress');
     }
@@ -83,8 +85,14 @@ export class LabService {
 
       await sleep(durationSeconds * 1000);
 
-      const { profile } = await post<{ profile: unknown }>(session, 'Profiler.stop');
-      const filePath = path.join('/tmp', `cpu-${new Date().toISOString().replaceAll(':', '-')}-${randomBytes(4).toString('hex')}.cpuprofile`);
+      const { profile } = await post<{ profile: unknown }>(
+        session,
+        'Profiler.stop',
+      );
+      const filePath = path.join(
+        '/tmp',
+        `cpu-${new Date().toISOString().replaceAll(':', '-')}-${randomBytes(4).toString('hex')}.cpuprofile`,
+      );
       await fs.writeFile(filePath, JSON.stringify(profile));
 
       return { filePath, durationSeconds };
@@ -111,7 +119,11 @@ function sleep(ms: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, ms));
 }
 
-function post<T = unknown>(session: inspector.Session, method: string, params?: object): Promise<T> {
+function post<T = unknown>(
+  session: inspector.Session,
+  method: string,
+  params?: object,
+): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     session.post(method, params ?? {}, (err: Error | null, result?: object) => {
       if (err) reject(err);
@@ -119,8 +131,3 @@ function post<T = unknown>(session: inspector.Session, method: string, params?: 
     });
   });
 }
-
-
-
-
-

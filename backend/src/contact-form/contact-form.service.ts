@@ -1,4 +1,8 @@
-import { Injectable, Logger, ServiceUnavailableException } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  ServiceUnavailableException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Resend } from 'resend';
 import { CreateContactDto } from './dto/create-contact.dto';
@@ -13,22 +17,32 @@ export class ContactFormService {
   constructor(private readonly configService: ConfigService) {
     const apiKey = this.configService.get<string>('RESEND_API_KEY');
     if (!apiKey) {
-      this.logger.warn('RESEND_API_KEY not configured - contact form will not send emails');
+      this.logger.warn(
+        'RESEND_API_KEY not configured - contact form will not send emails',
+      );
       this.resend = null;
     } else {
       this.resend = new Resend(apiKey);
     }
 
-    this.toEmail = this.configService.get<string>('CONTACT_FORM_TO') || 'david+contact@davidshaevel.com';
-    this.fromEmail = this.configService.get<string>('CONTACT_FORM_FROM') || 'david+noreply@davidshaevel.com';
+    this.toEmail =
+      this.configService.get<string>('CONTACT_FORM_TO') ||
+      'david+contact@davidshaevel.com';
+    this.fromEmail =
+      this.configService.get<string>('CONTACT_FORM_FROM') ||
+      'david+noreply@davidshaevel.com';
   }
 
-  async sendContactEmail(dto: CreateContactDto): Promise<{ success: boolean; messageId?: string }> {
+  async sendContactEmail(
+    dto: CreateContactDto,
+  ): Promise<{ success: boolean; messageId?: string }> {
     this.logger.log(`Processing contact form submission from ${dto.email}`);
 
     if (!this.resend) {
       this.logger.error('Cannot send email: RESEND_API_KEY is not configured');
-      throw new ServiceUnavailableException('Email service is not configured. Please try again later.');
+      throw new ServiceUnavailableException(
+        'Email service is not configured. Please try again later.',
+      );
     }
 
     try {
@@ -43,17 +57,23 @@ export class ContactFormService {
 
       if (error) {
         this.logger.error(`Resend API error: ${error.message}`, error);
-        throw new ServiceUnavailableException('Failed to send email. Please try again later.');
+        throw new ServiceUnavailableException(
+          'Failed to send email. Please try again later.',
+        );
       }
 
-      this.logger.log(`Contact form email sent successfully. Message ID: ${data?.id}`);
+      this.logger.log(
+        `Contact form email sent successfully. Message ID: ${data?.id}`,
+      );
       return { success: true, messageId: data?.id };
     } catch (error) {
       if (error instanceof ServiceUnavailableException) {
         throw error;
       }
       this.logger.error('Unexpected error sending contact form email', error);
-      throw new ServiceUnavailableException('Failed to send email. Please try again later.');
+      throw new ServiceUnavailableException(
+        'Failed to send email. Please try again later.',
+      );
     }
   }
 

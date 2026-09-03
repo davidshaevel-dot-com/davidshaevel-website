@@ -28,9 +28,7 @@ export class LabController {
   }
 
   @Post('memory-leak')
-  memoryLeak(
-    @Query('mb', new DefaultValuePipe(64), ParseIntPipe) mb: number,
-  ) {
+  memoryLeak(@Query('mb', new DefaultValuePipe(64), ParseIntPipe) mb: number) {
     return this.labService.retainMemory(mb);
   }
 
@@ -51,8 +49,3 @@ export class LabController {
     return this.labService.captureCpuProfile(seconds);
   }
 }
-
-
-
-
-

@@ -8,8 +8,3 @@ import { LabService } from './lab.service';
   providers: [LabService, LabGuard],
 })
 export class LabModule {}
-
-
-
-
-

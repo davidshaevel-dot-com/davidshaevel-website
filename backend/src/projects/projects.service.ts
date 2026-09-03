@@ -32,7 +32,10 @@ export class ProjectsService {
     return project;
   }
 
-  async update(id: string, updateProjectDto: UpdateProjectDto): Promise<Project> {
+  async update(
+    id: string,
+    updateProjectDto: UpdateProjectDto,
+  ): Promise<Project> {
     const project = await this.projectsRepository.preload({
       id,
       ...updateProjectDto,
@@ -48,4 +51,3 @@ export class ProjectsService {
     await this.projectsRepository.remove(project);
   }
 }
-
