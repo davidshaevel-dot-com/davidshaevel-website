@@ -9,7 +9,8 @@ export class ContactFormController {
   @Post()
   @HttpCode(HttpStatus.OK)
   async submitContactForm(@Body() createContactDto: CreateContactDto) {
-    const result = await this.contactFormService.sendContactEmail(createContactDto);
+    const result =
+      await this.contactFormService.sendContactEmail(createContactDto);
     return {
       success: result.success,
       message: 'Thank you for your message. I will get back to you soon!',

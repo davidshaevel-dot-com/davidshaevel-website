@@ -16,9 +16,11 @@ export class LabGuard implements CanActivate {
 
     // Extra safety: require explicit opt-in for production.
     const isProd =
-      this.configService.get<string>('NODE_ENV')?.toLowerCase() === 'production';
+      this.configService.get<string>('NODE_ENV')?.toLowerCase() ===
+      'production';
     const allowProd =
-      this.configService.get<string>('LAB_ALLOW_PROD')?.toLowerCase() === 'true';
+      this.configService.get<string>('LAB_ALLOW_PROD')?.toLowerCase() ===
+      'true';
     if (isProd && !allowProd) return false;
 
     const expectedToken = this.configService.get<string>('LAB_TOKEN');
@@ -39,8 +41,3 @@ export class LabGuard implements CanActivate {
     return timingSafeEqual(expectedBuffer, providedBuffer);
   }
 }
-
-
-
-
-

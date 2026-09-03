@@ -1,4 +1,12 @@
-import { IsString, IsOptional, IsArray, IsBoolean, IsNumber, IsUrl, MaxLength } from 'class-validator';
+import {
+  IsString,
+  IsOptional,
+  IsArray,
+  IsBoolean,
+  IsNumber,
+  IsUrl,
+  MaxLength,
+} from 'class-validator';
 
 export class CreateProjectDto {
   @IsString()
@@ -36,4 +44,3 @@ export class CreateProjectDto {
   @IsNumber()
   sortOrder?: number;
 }
-

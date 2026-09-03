@@ -1,5 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Registry, Counter, Histogram, Gauge, collectDefaultMetrics } from 'prom-client';
+import {
+  Registry,
+  Counter,
+  Histogram,
+  Gauge,
+  collectDefaultMetrics,
+} from 'prom-client';
 
 @Injectable()
 export class MetricsService {
@@ -82,9 +88,10 @@ export class MetricsService {
     this.backendInfo.set(
       {
         version: process.env.npm_package_version || '1.0.0',
-        environment: process.env.APP_ENV || process.env.NODE_ENV || 'development',
+        environment:
+          process.env.APP_ENV || process.env.NODE_ENV || 'development',
       },
-      1
+      1,
     );
 
     // Add custom uptime metric
@@ -100,14 +107,36 @@ export class MetricsService {
   }
 
   // Record HTTP request metrics
-  recordHttpRequest(method: string, route: string, statusCode: number, duration: number) {
-    this.httpRequestDuration.observe({ method, route, status_code: statusCode.toString() }, duration);
-    this.httpRequestTotal.inc({ method, route, status_code: statusCode.toString() });
+  recordHttpRequest(
+    method: string,
+    route: string,
+    statusCode: number,
+    duration: number,
+  ) {
+    this.httpRequestDuration.observe(
+      { method, route, status_code: statusCode.toString() },
+      duration,
+    );
+    this.httpRequestTotal.inc({
+      method,
+      route,
+      status_code: statusCode.toString(),
+    });
   }
 
   // Record HTTP error
-  recordHttpError(method: string, route: string, statusCode: number, errorType: string) {
-    this.httpRequestErrors.inc({ method, route, status_code: statusCode.toString(), error_type: errorType });
+  recordHttpError(
+    method: string,
+    route: string,
+    statusCode: number,
+    errorType: string,
+  ) {
+    this.httpRequestErrors.inc({
+      method,
+      route,
+      status_code: statusCode.toString(),
+      error_type: errorType,
+    });
   }
 
   // Record database query metrics
@@ -118,7 +147,11 @@ export class MetricsService {
 
   // Record database error
   recordDbError(queryType: string, table: string, errorType: string) {
-    this.dbQueryErrors.inc({ query_type: queryType, table, error_type: errorType });
+    this.dbQueryErrors.inc({
+      query_type: queryType,
+      table,
+      error_type: errorType,
+    });
   }
 
   // Get all metrics in Prometheus format
