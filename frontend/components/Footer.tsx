@@ -13,7 +13,7 @@ export default function Footer() {
               David Shaevel
             </h3>
             <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              Platform Engineer specializing in AWS cloud architecture, infrastructure as code, and DevOps best practices.
+              Platform &amp; Developer Infrastructure Engineer. Reliable cloud platforms, and the tooling that makes AI-assisted software development safer, faster, and observable.
             </p>
           </div>
 

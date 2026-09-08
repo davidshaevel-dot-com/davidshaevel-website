@@ -62,7 +62,7 @@ export default function Contact() {
             Get in Touch
           </h1>
           <p className="mt-6 text-xl text-zinc-600 dark:text-zinc-400">
-            Let&apos;s discuss how platform engineering can help your team
+            Let&apos;s discuss platform engineering, developer experience, and AI developer tooling for your team
           </p>
         </div>
 
@@ -163,7 +163,7 @@ export default function Contact() {
               </h2>
               <p className="mt-4 text-zinc-600 dark:text-zinc-400">
                 Feel free to reach out through any of these channels. I&apos;m always interested in
-                discussing platform engineering, infrastructure challenges, and exciting opportunities.
+                discussing platform engineering, developer infrastructure, and exciting opportunities.
               </p>
             </div>
 
@@ -233,8 +233,9 @@ export default function Contact() {
               </h3>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                 I&apos;m always open to discussing platform engineering challenges, infrastructure
-                consulting, or full-time opportunities. Whether you need help with AWS architecture,
-                Terraform modules, or building scalable systems, let&apos;s talk.
+                consulting, or full-time opportunities. Whether you need help with cloud architecture,
+                Terraform modules, developer infrastructure, or the tooling that makes AI coding agents
+                reliable, let&apos;s talk.
               </p>
             </div>
           </div>
