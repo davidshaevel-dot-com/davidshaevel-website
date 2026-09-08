@@ -59,6 +59,43 @@ const expertise: ExpertiseGroup[] = [
   },
 ];
 
+type ExperienceEntry = { dates: string; role: string; org: string; detail?: string };
+
+const experience: ExperienceEntry[] = [
+  {
+    dates: '2026',
+    role: 'Independent work',
+    org: 'Mission Control · Claude Toolkit · Multi-Cloud Kubernetes Developer Platform',
+    detail: 'AI developer infrastructure and a multi-cloud Kubernetes platform (see Projects)',
+  },
+  {
+    dates: 'Apr 2023 – Aug 2025',
+    role: 'Senior Cloud Engineer',
+    org: 'Zello — Platform Engineering, Austin, TX',
+  },
+  {
+    dates: 'May 2018 – Apr 2023',
+    role: 'Staff Software Engineer',
+    org: 'Walmart, Austin, TX',
+    detail: 'Developer Platforms · Global Tech Platform (PaaS Foundation) · Global Business Services (Public Cloud)',
+  },
+  {
+    dates: '2015 – 2018',
+    role: 'Senior Product Developer',
+    org: 'BMC Software',
+  },
+  {
+    dates: '2006 – 2015',
+    role: 'Earlier roles',
+    org: 'Boundary · Motive / Alcatel-Lucent · Periscope Holdings',
+  },
+  {
+    dates: '1997 – 2000',
+    role: 'Java Developer and Technical Support Specialist',
+    org: 'IBM — AIX',
+  },
+];
+
 export default function About() {
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
@@ -195,6 +232,31 @@ export default function About() {
                 measured engineering outcomes, and never let the implementer grade its own work.
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* Experience */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">Experience</h2>
+          <ol className="mt-8 space-y-6">
+            {experience.map((entry) => (
+              <li key={`${entry.role}-${entry.dates}`} className="grid gap-1 sm:grid-cols-[10rem_1fr] sm:gap-6">
+                <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">{entry.dates}</p>
+                <div>
+                  <p className="font-semibold text-zinc-900 dark:text-zinc-50">{entry.role}</p>
+                  <p className="text-zinc-600 dark:text-zinc-400">{entry.org}</p>
+                  {entry.detail && (
+                    <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">{entry.detail}</p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-8 border-t border-zinc-200 pt-6 dark:border-zinc-800">
+            <p className="font-semibold text-zinc-900 dark:text-zinc-50">Education</p>
+            <p className="text-zinc-600 dark:text-zinc-400">
+              The University of Texas at Austin — B.S. Computer Sciences, B.A. Mathematics
+            </p>
           </div>
         </div>
 
