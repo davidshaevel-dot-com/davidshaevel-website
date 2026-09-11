@@ -38,6 +38,12 @@ This starts PostgreSQL, backend (port 3001), and frontend (port 3000) with hot r
 
 **Docker Images:** Built via GitHub Actions and pushed to Azure Container Registry (`k8sdevplatformacr.azurecr.io`).
 
+## Versioning
+
+Releases use semantic versioning. MINOR releases cover user-visible enhancements, PATCH releases cover fixes, and MAJOR releases are reserved for a redesign or a breaking change to the public shape of the site.
+
+Each release is tagged on `main` at the commit Vercel production serves. v1.0.0 is the baseline release for the Vercel production site on 2026-09-03.
+
 ## Related Repositories
 
 - [davidshaevel-k8s-platform](https://github.com/davidshaevel-dot-com/davidshaevel-k8s-platform) — Kubernetes platform infrastructure
